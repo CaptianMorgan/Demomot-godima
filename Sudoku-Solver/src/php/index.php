@@ -15,8 +15,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="//cdn.muicss.com/mui-0.9.16/css/mui.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
-    <script src="//cdn.muicss.com/mui-0.9.16/angular/mui-angular.js"></script>
+    <script src="//cdn.muicss.com/mui-0.9.16/js/mui.js"></script>
+    <script type="text/javascript" src="../js/sudoku.js"></script>
 </head>
 <body>
 
@@ -46,7 +46,13 @@
         ?>
     </section>
     <footer>
-
+        <div class="mui-appbar mui--text-center">
+            <table width="100%">
+                <tr style="height:50px;">
+                    <td width="100%" class="mui--align-middle">Matthieu Godi &copy</td>
+                </tr>
+            </table>
+        </div>
     </footer>
 
 </body>

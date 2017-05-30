@@ -1,5 +1,44 @@
+html body {
+    height: 100%;
+    background-color: #eee;
+}
+
 .mui-row .mui-col-md-1{
     border:1px solid #aaa;
     height: 30px;
     width: 30px;
 }
+
+#gamePlace
+{
+    display: block;
+    padding-left: 15px;
+    width: 300px;
+    margin:0 auto;
+    padding: 20px;
+}
+
+html body .mui-container{
+    height: 788px;
+    margin: auto;
+}
+
+/*********************************************************************/
+.dark-bot .mui-col-md-1{
+    border-bottom: 3px solid #aaa;
+}
+
+.dark-top .mui-col-md-1{
+    border-top: 3px solid #aaa;
+}
+
+.mui-row .dark-left{
+    border-left: 3px solid #aaa;
+}
+
+.mui-row .dark-right{
+    border-right: 3px solid #aaa;
+}
+
+
+
