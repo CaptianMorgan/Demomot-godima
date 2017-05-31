@@ -12,10 +12,11 @@ html body {
 #gamePlace
 {
     display: block;
-    padding-left: 15px;
+    padding-left: 30px;
     width: 300px;
-    margin:0 auto;
-    padding: 20px;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 html body .mui-container{
