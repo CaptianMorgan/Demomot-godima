@@ -20,7 +20,7 @@ html body {
 }
 
 html body .mui-container{
-    height: 788px;
+    min-height: 815px;
     margin: auto;
 }
 

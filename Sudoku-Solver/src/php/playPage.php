@@ -50,11 +50,10 @@ $NBTIME = 9;
         </button>
 
         <ul class="mui-dropdown__menu">
-            <li><a onclick="changeDifficulty(20)">Facile</a></li>
-            <li><a onclick="changeDifficulty(40)">Moyen</a></li>
-            <li><a onclick="changeDifficulty(60)">Dure</a></li>
+            <li><a onclick="changeDifficulty(40)">Facile</a></li>
+            <li><a onclick="changeDifficulty(50)">Moyen</a></li>
+            <li><a onclick="changeDifficulty(70)">Dure</a></li>
         </ul>
     </div>
     <button class="mui-btn">Résoudre</button>
-
 </div>
