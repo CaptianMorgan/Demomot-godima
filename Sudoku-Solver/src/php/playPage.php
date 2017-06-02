@@ -28,13 +28,13 @@ $NBTIME = 9;
          for($j = 1;$j < $NBTIME+1;$j++) {
              if($j % 3 == 1)
              {
-                 echo '<div onclick="changeNumber('.$i.$j.')" class="mui-col-md-1 dark-left" id="'.$i.$j.'"></div>';
+                 echo '<div onclick="changeNumber('.$i.$j.')" class="mui-col-md-1 mui--text-center dark-left" id="'.$i.$j.'"></div>';
              }else {
                  if($j == $NBTIME)
                  {
-                     echo '<div onclick="changeNumber('.$i.$j.')" class="mui-col-md-1 dark-right" id="'.$i.$j.'"></div>';
+                     echo '<div onclick="changeNumber('.$i.$j.')" class="mui-col-md-1 mui--text-center dark-right" id="'.$i.$j.'"></div>';
                  }else{
-                     echo '<div onclick="changeNumber('.$i.$j.')" class="mui-col-md-1" id="'.$i.$j.'"></div>';
+                     echo '<div onclick="changeNumber('.$i.$j.')" class="mui-col-md-1 mui--text-center" id="'.$i.$j.'"></div>';
                  }
              }
         }
@@ -55,5 +55,5 @@ $NBTIME = 9;
             <li><a onclick="changeDifficulty(70)">Dure</a></li>
         </ul>
     </div>
-    <button class="mui-btn">Résoudre</button>
+    <button class="mui-btn" onclick="resolution()">Résoudre</button>
 </div>
