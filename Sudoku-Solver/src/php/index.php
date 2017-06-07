@@ -7,7 +7,7 @@
  */
 ?>
 <!doctype html>
-<html lang="fr">
+<html lang="fr" onkeydown="pressKey(event)">
 <head>
     <title>Sudoku Solver</title>
     <link href="../../resources/css/default.css" rel="Stylesheet" type="text/css">
@@ -30,7 +30,6 @@
     </div>
     </header>
     <nav>
-
     </nav>
     <section>
         <?php

@@ -8,71 +8,96 @@ const NBTIME = 9;
 //nombre de cases à supprimer
 var difficulty = 70;
 
+//dernière case modifée
+var lastCaseChange = "";
+
 /**
  * change la valeur d'une case et lance la vérification si la dernière case est changé
  * @param id id de la case
  */
-function changeNumber(id)
+function changeNumber(id,number)
 {
-    //recuperation de la case
+    var elements = document.getElementsByClassName("mui-col-md-1");
     var element = document.getElementById(id);
-    if(element.style.fontWeight != "900") {
-        //changement de la valeur
-        switch (element.innerHTML) {
-            case "":
-                element.innerHTML = "1";
-                break;
-            case "1":
-                element.innerHTML = "2";
-                break;
-            case "2":
-                element.innerHTML = "3";
-                break;
-            case "3":
-                element.innerHTML = "4";
-                break;
-            case "4":
-                element.innerHTML = "5";
-                break;
-            case "5":
-                element.innerHTML = "6";
-                break;
-            case "6":
-                element.innerHTML = "7";
-                break;
-            case "7":
-                element.innerHTML = "8";
-                break;
-            case "8":
-                element.innerHTML = "9";
-                break;
-            case "9":
-                element.innerHTML = "";
-                break;
-            default:
-                break;
-        }
+    if (element.style.fontWeight != "900") {
+    if(number === undefined) {
+        lastCaseChange = id;
+        //recuperation de la case
+        resetColor(elements);
 
-        var elements = document.getElementsByClassName("mui-col-md-1");
-
-        var allIsCheck = true;
-
-        for(var i = 0;i <elements.length;i++)
-        {
-            if(elements[i].innerHTML == "")
-            {
-                allIsCheck = false;
-
-                break;
-
+            //changement de la valeur
+            switch (element.innerHTML) {
+                case "":
+                    element.innerHTML = "1";
+                    break;
+                case "1":
+                    element.innerHTML = "2";
+                    break;
+                case "2":
+                    element.innerHTML = "3";
+                    break;
+                case "3":
+                    element.innerHTML = "4";
+                    break;
+                case "4":
+                    element.innerHTML = "5";
+                    break;
+                case "5":
+                    element.innerHTML = "6";
+                    break;
+                case "6":
+                    element.innerHTML = "7";
+                    break;
+                case "7":
+                    element.innerHTML = "8";
+                    break;
+                case "8":
+                    element.innerHTML = "9";
+                    break;
+                case "9":
+                    element.innerHTML = "";
+                    break;
+                default:
+                    break;
             }
-        }
+    } else {
+            if(number > 96)
+            {
+                number -= 48;
+            }
+            if(number === 96 || number === 48)
+            {
+                element.innerHTML = "";
+            }else {
+                element.innerHTML = String.fromCharCode(number);
+            }
+    }
 
-        if(allIsCheck)
+
+
+
+    var allIsCheck = true;
+
+    for(var i = 0;i <elements.length;i++)
+    {
+        if(elements[i].innerHTML == "")
         {
-            verification(elements);
-        }
+            allIsCheck = false;
 
+            break;
+
+        }
+    }
+
+    if(allIsCheck)
+    {
+        verification(elements);
+    }
+
+        if (element.style.backgroundColor !== "red")
+            element.style.backgroundColor = "lightblue";
+        else
+            element.style.backgroundColor = "orange"
     }
 
 }
@@ -322,32 +347,32 @@ function verification(elements)
                             }
 
                             //ajout de l'autre chiffre au tableau de chiffre faux
-                            switch (sudokuValue.indexOf("" + (j * 3 + k + 1) + (i * 3 + l + 1))) {
-                                case "0":
+                            switch (indexOfArray(sudokuValue, sudokuToCheck[j*3+k][i*3+l])) {
+                                case 0:
                                     numberFalse[nbNumberFalse] = 3 * i + 1 + "" + (3 * j + 1);
                                     break;
-                                case "1":
+                                case 1:
                                     numberFalse[nbNumberFalse] = 3 * i + 1 + "" + (3 * j + 2);
                                     break;
-                                case "2":
+                                case 2:
                                     numberFalse[nbNumberFalse] = 3 * i + 1 +"" + (3 * j + 3);
                                     break;
-                                case "3":
+                                case 3:
                                     numberFalse[nbNumberFalse] = 3 * i + 2 + "" + (3 * j + 1);
                                     break;
-                                case "4":
+                                case 4:
                                     numberFalse[nbNumberFalse] = 3 * i + 2 + "" + (3 * j + 2);
                                     break;
-                                case "5":
+                                case 5:
                                     numberFalse[nbNumberFalse] = 3 * i + 2 + "" + (3 * j + 3);
                                     break;
-                                case "6":
+                                case 6:
                                     numberFalse[nbNumberFalse] = 3 * i + 3 + "" + (3 * j+ 1);
                                     break;
-                                case "7":
+                                case 7:
                                     numberFalse[nbNumberFalse] = 3 * i + 3 + "" + (3 * j + 2);
                                     break;
-                                case "8":
+                                case 8:
                                     numberFalse[nbNumberFalse] = 3 * i + 3 + "" + (3 * j + 3);
                                     break;
                                 default:
@@ -459,7 +484,7 @@ function resolution()
         }
         if(!sudokuIsTrue)
         {
-            alert("Le Sudoku n'a pas de solution.")
+            alert("Le Sudoku n'a pas de solution. Vérifier les valeurs que vous avez changez")
         }else
         {
             addNumberToGamePlace(tabSudoku);
@@ -618,51 +643,46 @@ function fillCaseRec(nbLine,nbCols)
  * @param tabSudoku
  * @returns {boolean}
  */
-function gridIsValid(tabSudoku,nbLine,nbCols)
-{
+function gridIsValid(tabSudoku,nbLine,nbCols) {
 
     //tableau de ligne
     var sudokuValue = new Array();
 
 
     //vérification de la ligne
-    for(var i = 0; i < NBTIME;i++)
-    {
-            //vérification si le chiffre est déjà apparu dans la ligne
-            if(indexOfArray(sudokuValue,tabSudoku[nbLine][i]) > -1)
-            {
-                if(tabSudoku[nbLine][i] !== "") {
-                    return false;
-                }
-            }else {
-                sudokuValue[i] = tabSudoku[nbLine][i];
+    for (var i = 0; i < NBTIME; i++) {
+        //vérification si le chiffre est déjà apparu dans la ligne
+        if (indexOfArray(sudokuValue, tabSudoku[nbLine][i]) > -1) {
+            if (tabSudoku[nbLine][i] !== "") {
+                return false;
             }
+        } else {
+            sudokuValue[i] = tabSudoku[nbLine][i];
+        }
     }
     sudokuValue = new Array();
     //vérification de la colonne
-    for(var i = 0; i < NBTIME;i++)
-    {
+    for (var i = 0; i < NBTIME; i++) {
         //vérification si le chiffre est déjà apparu dans la colonne
-        if(indexOfArray(sudokuValue,tabSudoku[i][nbCols]) > -1)
-        {
-            if(tabSudoku[i][nbCols] !== "")
-            return false;
-        }else {
+        if (indexOfArray(sudokuValue, tabSudoku[i][nbCols]) > -1) {
+            if (tabSudoku[i][nbCols] !== "")
+                return false;
+        } else {
             sudokuValue[i] = tabSudoku[i][nbCols];
         }
     }
     sudokuValue = new Array();
     //pour chaque carré
     var nbTime = 0;
-    for(var k = 0;k < 3;k++) {
-        for(var l = 0;l < 3;l++) {
+    for (var k = 0; k < 3; k++) {
+        for (var l = 0; l < 3; l++) {
 
             //vérification si le chiffre est déjà apparu dans le carré
-            if (indexOfArray(sudokuValue, tabSudoku[Math.floor(nbLine/3)*3+k][Math.floor(nbCols/3)*3+l]) > -1) {
-                if(tabSudoku[Math.floor(nbLine/3)*3+k][Math.floor(nbCols/3)*3+l] !== "")
+            if (indexOfArray(sudokuValue, tabSudoku[Math.floor(nbLine / 3) * 3 + k][Math.floor(nbCols / 3) * 3 + l]) > -1) {
+                if (tabSudoku[Math.floor(nbLine / 3) * 3 + k][Math.floor(nbCols / 3) * 3 + l] !== "")
                     return false;
             } else {
-                sudokuValue[nbTime] = tabSudoku[Math.floor(nbLine/3)*3+k][Math.floor(nbCols/3)*3+l];
+                sudokuValue[nbTime] = tabSudoku[Math.floor(nbLine / 3) * 3 + k][Math.floor(nbCols / 3) * 3 + l];
                 nbTime++;
             }
         }
@@ -670,5 +690,27 @@ function gridIsValid(tabSudoku,nbLine,nbCols)
     return true;
 }
 
+function  pressKey(event)
+{
+    reset(event);
+    if(event.which >= 48 && event.which <= 57 || event.which >= 96 && event.which <= 105)
+        changeNumber(lastCaseChange,event.which)
+}
 
-
+function reset(event)
+{
+    if(event.which == 114 ||event.which == 82)
+    {
+        sudokuReset = new Array();
+        for(var i = 0;i < NBTIME;i++)
+        {
+            sudokuReset[i] = new Array();
+            for(var j = 0;j < NBTIME;j++)
+            {
+                sudokuReset[i][j] = "";
+            }
+        }
+        resetColor(document.getElementsByClassName("mui-col-md-1"));
+        addNumberToGamePlace(sudokuReset);
+    }
+}
