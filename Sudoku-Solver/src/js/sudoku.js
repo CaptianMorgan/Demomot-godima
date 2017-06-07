@@ -6,7 +6,7 @@
 const NBTIME = 9;
 
 //nombre de cases à supprimer
-var difficulty = 1;
+var difficulty = 70;
 
 /**
  * change la valeur d'une case et lance la vérification si la dernière case est changé
@@ -53,22 +53,7 @@ function changeNumber(id)
                 break;
         }
 
-        //recuperation de toutes les cases
-        var elements = document.getElementsByClassName("mui-col-md-1");
-
-        //vérification si toutes les cases on une valeur
-        var allIsCheck = true;
-        for (var i = 0; i < elements.length; i++) {
-            if (elements[i].innerHTML == "") {
-                allIsCheck = false;
-                break;
-            }
-        }
-
-        //si oui lance la vérification de la solution proposée
-        if (allIsCheck) {
-            verification(elements);
-        }
+        verification(elements);
     }
 
 }
@@ -142,7 +127,6 @@ function generateSudoku()
             }else {//sinon ajout d'une valeur aléatoire parmis les solutions possibles
                 sudokuArray[i][j] = sudokuValue[ Math.floor((Math.random() * sudokuValue.length))];
             }
-
             //remise à neuf des solutions possible
             sudokuValue = sudokuValueDefault.slice();
         }
@@ -230,7 +214,7 @@ function verification(elements)
     {
         sudokuToCheck[i] = new Array();
         for (var j = 0; j < NBTIME;j++) {
-            sudokuToCheck[i][j] = [elements[nbElement].innerHTML]
+            sudokuToCheck[i][j] = elements[nbElement].innerHTML
             nbElement++;
         }
     }
@@ -244,7 +228,7 @@ function verification(elements)
             if(indexOfArray(sudokuValue,sudokuToCheck[i][j]) > -1)
             {
                 //si il est déjà marqué comme faux
-                if(numberFalse.indexOf("" + (i+1) + (j+1)) === -1) {
+                if(numberFalse.indexOf("" + (i+1) + (j+1)) === -1 && sudokuToCheck[i][j] !== "") {
 
                     //ajout du chiffre au tableau de chiffre faux
                     numberFalse[nbNumberFalse] = "" + (i + 1) + (j + 1);
@@ -252,7 +236,7 @@ function verification(elements)
                 }
 
                 //si il est déjà marqué comme faux
-                if(numberFalse.indexOf("" + (i+1) + (indexOfArray(sudokuValue,sudokuToCheck[i][j])+1) > -1)) {
+                if(numberFalse.indexOf("" + (i+1) + (indexOfArray(sudokuValue,sudokuToCheck[i][j])+1) > -1) && sudokuToCheck[i][j] !== "") {
 
                     //ajout de l'autre chiffre au tableau de chiffre faux
                     numberFalse[nbNumberFalse] = "" + (i+1) + (indexOfArray(sudokuValue,sudokuToCheck[i][j])+1);
@@ -278,14 +262,14 @@ function verification(elements)
             {
 
                 //si il est déjà marqué comme faux
-                if(numberFalse.indexOf("" + (j+1) + (i+1)) === -1) {
+                if(numberFalse.indexOf("" + (j+1) + (i+1)) === -1 && sudokuToCheck[j][i] !== "") {
                     //ajout du chiffre au tableau de chiffre faux
                     numberFalse[nbNumberFalse] = "" + (j + 1) + (i + 1);
                     nbNumberFalse++;
                 }
 
                 //si il est déjà marqué comme faux
-                if(numberFalse.indexOf("" + (indexOfArray(sudokuValue,sudokuToCheck[j][i])+1)+ (j+1)) > -1){
+                if(numberFalse.indexOf("" + (indexOfArray(sudokuValue,sudokuToCheck[j][i])+1)+ (j+1)) > -1 && sudokuToCheck[j][i] !== ""){
                     //ajout de l'autre chiffre au tableau de chiffre faux
                     numberFalse[nbNumberFalse] = "" + (indexOfArray(sudokuValue,sudokuToCheck[j][i])+1)+ (j+1);
                     nbNumberFalse++;
@@ -309,49 +293,51 @@ function verification(elements)
 
                     //vérification si le chiffre est déjà apparu dans le carré
                     if (indexOfArray(sudokuValue, sudokuToCheck[j*3+k][i*3+l]) > -1) {
+                        if(sudokuToCheck[j*3+k][i*3+l] !== "") {
 
-                        //si il est déjà marqué comme faux
-                        if(numberFalse.indexOf("" + (j * 3 + k + 1) + (i * 3 + l + 1)) === -1) {
-                            //ajout du chiffre au tableau de chiffre faux
-                            numberFalse[nbNumberFalse] = "" + (j * 3 + k + 1) + (i * 3 + l + 1);
+                            //si il est déjà marqué comme faux
+                            if (numberFalse.indexOf("" + (j * 3 + k + 1) + (i * 3 + l + 1)) === -1) {
+                                //ajout du chiffre au tableau de chiffre faux
+                                numberFalse[nbNumberFalse] = "" + (j * 3 + k + 1) + (i * 3 + l + 1);
+                                nbNumberFalse++;
+                            }
+
+                            //ajout de l'autre chiffre au tableau de chiffre faux
+                            switch (sudokuValue.indexOf("" + (j * 3 + k + 1) + (i * 3 + l + 1))) {
+                                case "0":
+
+                                    numberFalse[nbNumberFalse] = 3 * i + "" + (3 * j);
+                                    break;
+                                case "1":
+                                    numberFalse[nbNumberFalse] = 3 * i + "" + (3 * j + 1);
+                                    break;
+                                case "2":
+                                    numberFalse[nbNumberFalse] = 3 * i + "" + (3 * j + 2);
+                                    break;
+                                case "3":
+                                    numberFalse[nbNumberFalse] = 3 * i + 1 + "" + (3 * j);
+                                    break;
+                                case "4":
+                                    numberFalse[nbNumberFalse] = 3 * i + 1 + "" + (3 * j + 1);
+                                    break;
+                                case "5":
+                                    numberFalse[nbNumberFalse] = 3 * i + 1 + "" + (3 * j + 2);
+                                    break;
+                                case "6":
+                                    numberFalse[nbNumberFalse] = 3 * i + 2 + "" + (3 * j);
+                                    break;
+                                case "7":
+                                    numberFalse[nbNumberFalse] = 3 * i + 2 + "" + (3 * j + 1);
+                                    break;
+                                case "8":
+                                    numberFalse[nbNumberFalse] = 3 * i + 2 + "" + (3 * j + 2);
+                                    break;
+                                default:
+                                    break;
+                            }
                             nbNumberFalse++;
+                            sudokuValue[nbTime] = 0;
                         }
-
-                        //ajout de l'autre chiffre au tableau de chiffre faux
-                        switch (sudokuValue.indexOf("" + (j * 3 + k + 1) + (i * 3 + l + 1)))
-                        {
-                            case "0":
-                                numberFalse[nbNumberFalse] = 3*i+ "" +(3*j);
-                                break;
-                            case "1":
-                                numberFalse[nbNumberFalse] = 3*i+""+(3*j+1);
-                                break;
-                            case "2":
-                                numberFalse[nbNumberFalse] = 3*i+""+(3*j+2);
-                                break;
-                            case "3":
-                                numberFalse[nbNumberFalse] = 3*i+1+""+(3*j);
-                                break;
-                            case "4":
-                                numberFalse[nbNumberFalse] = 3*i+1+""+(3*j+1);
-                                break;
-                            case "5":
-                                numberFalse[nbNumberFalse] = 3*i+1+""+(3*j+2);
-                                break;
-                            case "6":
-                                numberFalse[nbNumberFalse] = 3*i+2+""+(3*j);
-                                break;
-                            case "7":
-                                numberFalse[nbNumberFalse] = 3*i+2+""+(3*j+1);
-                            break;
-                            case "8":
-                                numberFalse[nbNumberFalse] = 3*i+2+""+(3*j+2);
-                                break;
-                            default:
-                                break;
-                        }
-                        nbNumberFalse++;
-                        sudokuValue[nbTime] = 0;
                     } else {
                         sudokuValue[nbTime] = sudokuToCheck[j*3+k][i*3+l];
                         nbTime++;
@@ -369,7 +355,7 @@ function verification(elements)
         changeColor(numberFalse,"red");
     else
         //TODO une vrai win
-        alert("win");
+        alert("Vous avez gagné");
 }
 
 /**
@@ -431,14 +417,14 @@ function resolution()
     {
         sudokuToSolve[i] = new Array();
         for (var j = 0; j < NBTIME;j++) {
-            sudokuToSolve[i][j] = [elements[nbElement].innerHTML]
+            sudokuToSolve[i][j] = elements[nbElement].innerHTML
             nbElement++;
         }
     }
     sudokuToSolve = fillTrueCase(sudokuToSolve);
     if(!sudokuToSolve)
     {
-        alert("Le sudoku n'a pas de solution")
+        alert("Le sudoku n'a pas de solution. Vérifier les valeurs que vous avez changez")
     }else {
         var nbElementEmpty = 0;
         for (var i = 0; i < NBTIME; i++) {
@@ -448,13 +434,25 @@ function resolution()
                 }
             }
         }
+
         if (nbElementEmpty > 0) {
-            sudokuToSolve = fillCaseRec(sudokuToSolve);
+            sudokuToSolve = fillCaseRec(sudokuToSolve,0,0);
         }
-        addNumberToGamePlace(sudokuToSolve);
+        if(!sudokuToSolve)
+        {
+            alert("Le Sudoku n'a pas de solution.")
+        }else
+        {
+            addNumberToGamePlace(sudokuToSolve);
+        }
     }
 }
 
+/****
+ * Trouve toutes les cases avec qu'une seul solution possible
+ * @param sudokuToSolve
+ * @returns {*}
+ */
 function fillTrueCase(sudokuToSolve)
 {
     //tableau de ligne
@@ -462,7 +460,9 @@ function fillTrueCase(sudokuToSolve)
     var sudokuValue = sudokuValueDefault.slice(0);
     var lastSudokuToSolve;
     do {
-        lastSudokuToSolve = sudokuToSolve.slice(0);
+        //copie du tableau de jeu pour faire une comparaison avant-apres
+        lastSudokuToSolve = [];
+        lastSudokuToSolve += sudokuToSolve.slice(0);
         for (var i = 0; i < NBTIME; i++) {
             //chaque case
             for (var j = 0; j < NBTIME; j++) {
@@ -493,27 +493,140 @@ function fillTrueCase(sudokuToSolve)
                         }
                     }
 
+                    //ajoute la seul valeur possible si il y en a une
                     if(sudokuValue.length === 1)
                     {
-                        sudokuToSolve[i][j] = sudokuValue[0];
+                        sudokuToSolve[i][j] = sudokuValue[0]+ "";
 
                     }
+                    //si aucune valeur possible le sudokue est faux
                     if(sudokuValue.length === 0)
                     {
                         return false;
                     }
                 }
                 sudokuValue = sudokuValueDefault.slice(0);
-
             }
         }
-        //alert(sudokuToSolve.toString() + " = " + lastSudokuToSolve.toString())
-        //alert(sudokuToSolve.toString() !== lastSudokuToSolve.toString());
     }while (sudokuToSolve.toString() !== lastSudokuToSolve.toString());
     return sudokuToSolve;
 }
 
-function fillCaseRec(tabSudoku)
+function fillCaseRec(tabSudoku,nbLine,nbCols)
 {
-    return tabSudoku;
+    var isFull = true;
+    for(var i = 0;i < NBTIME;i++) {
+        if (indexOfArray(tabSudoku[i], "") > -1)
+        {
+            isFull = false;
+        }
+    }
+    if(isFull) {
+        return true;
+    }
+    for(var j = 1; j <= NBTIME;j++) {
+        if(tabSudoku[nbLine][nbCols] == "") {
+            tabSudoku[nbLine][nbCols] = j + "";
+            if (gridIsValid(tabSudoku)) {
+                if (nbCols == 8) {
+                    nbLine++;
+                    nbCols = 0;
+                }
+                else
+                    nbCols++;
+
+                if (fillCaseRec(tabSudoku, nbLine, nbCols))
+                    return true;
+            }
+        }else {
+            if (nbCols == 8) {
+                nbLine++;
+                nbCols = 0;
+            }
+            else
+                nbCols++;
+
+            if (fillCaseRec(tabSudoku, nbLine, nbCols))
+                return true;
+        }
+    }
+    tabSudoku[nbLine][nbCols] = "";
+    return false;
 }
+
+/**
+ *
+ * @param tabSudoku
+ * @returns {boolean}
+ */
+function gridIsValid(tabSudoku)
+{
+
+    //tableau de ligne
+    var sudokuValue = new Array();
+
+
+    //vérification de chaque ligne
+    for(var i = 0; i < NBTIME;i++)
+    {
+        //chaque case
+        for(var j = 0; j < NBTIME;j++)
+        {
+            //vérification si le chiffre est déjà apparu dans la ligne
+            if(indexOfArray(sudokuValue,tabSudoku[i][j]) > -1)
+            {
+                if(tabSudoku[i][j] !== "") {
+                    return false;
+                }
+            }else {
+                sudokuValue[j] = tabSudoku[i][j];
+            }
+
+        }
+        sudokuValue = new Array();
+    }
+
+    //vérification de chaque colonne
+    for(var i = 0; i < NBTIME;i++)
+    {
+        //chaque case
+        for(var j = 0; j < NBTIME;j++)
+        {
+            //vérification si le chiffre est déjà apparu dans la colonne
+            if(indexOfArray(sudokuValue,tabSudoku[j][i]) > -1)
+            {
+                if(tabSudoku[j][i] !== "")
+                return false;
+            }else {
+                sudokuValue[j] = tabSudoku[j][i];
+            }
+        }
+        sudokuValue = new Array();
+    }
+
+    //pour chaque carré
+    var nbTime = 0;
+    for(var i = 0; i < 3;i++)
+    {
+        for(var j = 0; j < 3;j++)
+        {
+            for(var k = 0;k < 3;k++) {
+                for(var l = 0;l < 3;l++) {
+
+                    //vérification si le chiffre est déjà apparu dans le carré
+                    if (indexOfArray(sudokuValue, tabSudoku[j*3+k][i*3+l]) > -1) {
+                        if(tabSudoku[j*3+k][i*3+l] !== "")
+                            return false;
+                    } else {
+                        sudokuValue[nbTime] = tabSudoku[j*3+k][i*3+l];
+                        nbTime++;
+                    }
+                }
+            }
+            sudokuValue = new Array();
+            nbTime = 0;
+        }
+    }
+    return true;
+}
+

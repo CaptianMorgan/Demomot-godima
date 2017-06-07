@@ -25,18 +25,17 @@
       <file leaf-file-name="sudoku.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/sudoku.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3222749">
-              <caret line="468" column="33" selection-start-line="468" selection-start-column="20" selection-end-line="468" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.6838488">
+              <caret line="216" column="63" selection-start-line="216" selection-start-column="63" selection-end-line="216" selection-end-column="63" />
               <folding>
-                <element signature="n#!!block;n#changeNumber#0" expanded="false" />
                 <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
                 <element signature="n#!!block;n#suppNumber#0" expanded="false" />
                 <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
                 <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
-                <element signature="n#!!block;n#verification#0" expanded="false" />
                 <element signature="n#!!block;n#changeColor#0" expanded="false" />
                 <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
                 <element signature="n#!!block;n#resetColor#0" expanded="false" />
+                <element signature="n#!!block;n#resolution#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -45,7 +44,7 @@
       <file leaf-file-name="playPage.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/php/playPage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-37.26923">
+            <state vertical-scroll-proportion="0.0">
               <caret line="57" column="49" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
               <folding />
             </state>
@@ -55,7 +54,7 @@
       <file leaf-file-name="default.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/css/default.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.076923">
+            <state vertical-scroll-proportion="0.0">
               <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
               <folding />
             </state>
@@ -95,7 +94,7 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
   <component name="ProjectFrameBounds">
-    <option name="width" value="1634" />
+    <option name="width" value="1076" />
     <option name="height" value="1010" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -123,6 +122,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -225,8 +226,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -294,10 +293,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1634" height="1010" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1076" height="1010" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13226205" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20188679" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -329,7 +328,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -339,15 +338,80 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#changeNumber#0" expanded="false" />
             <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
             <element signature="n#!!block;n#suppNumber#0" expanded="false" />
             <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
             <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
-            <element signature="n#!!block;n#verification#0" expanded="false" />
             <element signature="n#!!block;n#changeColor#0" expanded="false" />
             <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
             <element signature="n#!!block;n#resetColor#0" expanded="false" />
+            <element signature="n#!!block;n#resolution#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/php/playPage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="49" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/css/default.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/sudoku.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
+            <element signature="n#!!block;n#suppNumber#0" expanded="false" />
+            <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
+            <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
+            <element signature="n#!!block;n#changeColor#0" expanded="false" />
+            <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
+            <element signature="n#!!block;n#resetColor#0" expanded="false" />
+            <element signature="n#!!block;n#resolution#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/php/playPage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="49" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/css/default.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/sudoku.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
+            <element signature="n#!!block;n#suppNumber#0" expanded="false" />
+            <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
+            <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
+            <element signature="n#!!block;n#changeColor#0" expanded="false" />
+            <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
+            <element signature="n#!!block;n#resetColor#0" expanded="false" />
+            <element signature="n#!!block;n#resolution#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -373,15 +437,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#changeNumber#0" expanded="false" />
             <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
             <element signature="n#!!block;n#suppNumber#0" expanded="false" />
             <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
             <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
-            <element signature="n#!!block;n#verification#0" expanded="false" />
             <element signature="n#!!block;n#changeColor#0" expanded="false" />
             <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
             <element signature="n#!!block;n#resetColor#0" expanded="false" />
+            <element signature="n#!!block;n#resolution#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -399,15 +462,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#changeNumber#0" expanded="false" />
             <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
             <element signature="n#!!block;n#suppNumber#0" expanded="false" />
             <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
             <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
-            <element signature="n#!!block;n#verification#0" expanded="false" />
             <element signature="n#!!block;n#changeColor#0" expanded="false" />
             <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
             <element signature="n#!!block;n#resetColor#0" expanded="false" />
+            <element signature="n#!!block;n#resolution#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -425,15 +487,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#changeNumber#0" expanded="false" />
             <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
             <element signature="n#!!block;n#suppNumber#0" expanded="false" />
             <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
             <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
-            <element signature="n#!!block;n#verification#0" expanded="false" />
             <element signature="n#!!block;n#changeColor#0" expanded="false" />
             <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
             <element signature="n#!!block;n#resetColor#0" expanded="false" />
+            <element signature="n#!!block;n#resolution#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -451,15 +512,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding>
-            <element signature="n#!!block;n#changeNumber#0" expanded="false" />
             <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
             <element signature="n#!!block;n#suppNumber#0" expanded="false" />
             <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
             <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
-            <element signature="n#!!block;n#verification#0" expanded="false" />
             <element signature="n#!!block;n#changeColor#0" expanded="false" />
             <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
             <element signature="n#!!block;n#resetColor#0" expanded="false" />
+            <element signature="n#!!block;n#resolution#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -477,15 +537,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding>
-            <element signature="n#!!block;n#changeNumber#0" expanded="false" />
             <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
             <element signature="n#!!block;n#suppNumber#0" expanded="false" />
             <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
             <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
-            <element signature="n#!!block;n#verification#0" expanded="false" />
             <element signature="n#!!block;n#changeColor#0" expanded="false" />
             <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
             <element signature="n#!!block;n#resetColor#0" expanded="false" />
+            <element signature="n#!!block;n#resolution#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -503,15 +562,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding>
-            <element signature="n#!!block;n#changeNumber#0" expanded="false" />
             <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
             <element signature="n#!!block;n#suppNumber#0" expanded="false" />
             <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
             <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
-            <element signature="n#!!block;n#verification#0" expanded="false" />
             <element signature="n#!!block;n#changeColor#0" expanded="false" />
             <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
             <element signature="n#!!block;n#resetColor#0" expanded="false" />
+            <element signature="n#!!block;n#resolution#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -543,15 +601,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#changeNumber#0" expanded="false" />
             <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
             <element signature="n#!!block;n#suppNumber#0" expanded="false" />
             <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
             <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
-            <element signature="n#!!block;n#verification#0" expanded="false" />
             <element signature="n#!!block;n#changeColor#0" expanded="false" />
             <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
             <element signature="n#!!block;n#resetColor#0" expanded="false" />
+            <element signature="n#!!block;n#resolution#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -609,7 +666,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/css/default.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.076923">
+        <state vertical-scroll-proportion="0.0">
           <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
           <folding />
         </state>
@@ -617,7 +674,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/php/playPage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-37.26923">
+        <state vertical-scroll-proportion="0.0">
           <caret line="57" column="49" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
           <folding />
         </state>
@@ -625,18 +682,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/sudoku.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3222749">
-          <caret line="468" column="33" selection-start-line="468" selection-start-column="20" selection-end-line="468" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.6838488">
+          <caret line="216" column="63" selection-start-line="216" selection-start-column="63" selection-end-line="216" selection-end-column="63" />
           <folding>
-            <element signature="n#!!block;n#changeNumber#0" expanded="false" />
             <element signature="n#!!block;n#generateSudoku#0" expanded="false" />
             <element signature="n#!!block;n#suppNumber#0" expanded="false" />
             <element signature="n#!!block;n#addNumberToGamePlace#0" expanded="false" />
             <element signature="n#!!block;n#changeDifficulty#0" expanded="false" />
-            <element signature="n#!!block;n#verification#0" expanded="false" />
             <element signature="n#!!block;n#changeColor#0" expanded="false" />
             <element signature="n#!!block;n#indexOfArray#0" expanded="false" />
             <element signature="n#!!block;n#resetColor#0" expanded="false" />
+            <element signature="n#!!block;n#resolution#0" expanded="false" />
           </folding>
         </state>
       </provider>
