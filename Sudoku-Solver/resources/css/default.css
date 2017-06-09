@@ -7,7 +7,17 @@ html body {
     border:1px solid #aaa;
     height: 30px;
     width: 30px;
+    padding:0;
+    text-align: center;
+}
 
+/*desactivation de la selection automatique*/
+.mui-row .mui-col-md-1::selection{
+    background: transparent;
+}
+/*même chose mais pour Firefox*/
+.mui-row .mui-col-md-1::-moz-selection{
+    background: transparent;
 }
 
 #gamePlace

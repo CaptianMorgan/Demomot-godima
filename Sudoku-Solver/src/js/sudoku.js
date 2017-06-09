@@ -6,10 +6,14 @@
 const NBTIME = 9;
 
 //nombre de cases à supprimer
-var difficulty = 70;
+var difficultyMax = 31;
+var difficultyMin = 0;
+
+var difficultyLowerBoundByRowsCols = 5;
 
 //dernière case modifée
 var lastCaseChange = "";
+
 
 /**
  * change la valeur d'une case et lance la vérification si la dernière case est changé
@@ -107,7 +111,7 @@ function changeNumber(id,number)
  */
 function generateSudoku()
 {
-
+    var start = Date.now();
     resetColor(document.getElementsByClassName("mui-col-md-1"));
     //tableau de jeu
     var sudokuArray = new Array();
@@ -177,7 +181,8 @@ function generateSudoku()
     }
 
     //lance l'affichage des chiffres et supprime des chiffres pour le rendre jouable
-    addNumberToGamePlace(suppNumber(difficulty,sudokuArray));
+    addNumberToGamePlace(suppNumber(difficultyMax,difficultyMin,sudokuArray));
+    //alert(Date.now() - start + "ms");
 }
 
 /**
@@ -186,15 +191,63 @@ function generateSudoku()
  * @param sudokuArray solution d'un sudoku
  * @returns {*} solution du sudoku avec des trous
  */
-function suppNumber(nbNumberToSuppr,sudokuArray)
+function suppNumber(nbNumberToSupprMax,nbNumberToSupprMin,sudokuArray)
 {
-    //supprime des chiffres le nombre de fois parametré
-    for(var i = 0; i < nbNumberToSuppr;i++)
-    {
-        //supretion d'un chiffre aléatoire
-        sudokuArray[Math.floor((Math.random() * 9))][Math.floor((Math.random() * 9))] = "";
-    }
+    var numberEmpty = 0;
+    //temps que il n'y a pas assez de vide
+    do {
+        var lastNumberEmpty = numberEmpty
+        //supprime des chiffres le nombre de fois parametré
+        for (var i = 0; i < nbNumberToSupprMax - lastNumberEmpty; i++) {
+            //supression d'un chiffre aléatoire
+            var x = Math.floor((Math.random() * 9));
+            var y = Math.floor((Math.random() * 9));
+            //vérification des parametres nombres de case par ligne et colonnes
+            if(sudokuArray[x][y] !== "" && getLowerFilledByACol(y,sudokuArray) > difficultyLowerBoundByRowsCols && getLowerFilledByARow(x,sudokuArray) > difficultyLowerBoundByRowsCols)
+            {
+                sudokuArray[x][y] = "";
+                numberEmpty++;
+            }
+        }
+    }while ( numberEmpty < nbNumberToSupprMin);
     return sudokuArray;
+}
+
+/**
+ * recuperation du nombre de case remplie d'une colonne
+ * @param nbCol numero de la colonne
+ * @param sudokuArray tableau de jeu
+ * @returns {number} nombre de case remplie
+ */
+function getLowerFilledByACol(nbCol,sudokuArray)
+{
+    var nbBound = 0;
+    for(var i = 0;i < NBTIME;i++)
+    {
+        if(sudokuArray[i][nbCol] !== "")
+        {
+            nbBound++;
+        }
+    }
+    return nbBound;
+}
+/**
+ * recuperation du nombre de case remplie d'une ligne
+ * @param nbCol numero de la ligne
+ * @param sudokuArray tableau de jeu
+ * @returns {number} nombre de case remplie
+ */
+function getLowerFilledByARow(nbRow,sudokuArray)
+{
+    var nbBound = 0;
+    for(var i = 0;i < NBTIME;i++)
+    {
+        if(sudokuArray[nbRow][i] !== "")
+        {
+            nbBound++;
+        }
+    }
+    return nbBound;
 }
 
 /**
@@ -228,11 +281,14 @@ function addNumberToGamePlace(sudokuArray)
 
 /**
  * change le nombre de case à supprimer
- * @param number nombre de case à supprimer
+ * @param numberMax nombre max de case à supprimer
+ * @param numberMin nombre min de case à supprimer
  */
-function changeDifficulty(number)
+function changeDifficulty(numberMax,numberMin,LowerBoundByRowsCols)
 {
-    difficulty = number;
+    difficultyMax = numberMax;
+    difficultyMin = numberMin;
+    difficultyLowerBoundByRowsCols = LowerBoundByRowsCols;
 }
 
 
@@ -251,7 +307,7 @@ function verification(elements)
     //tableau de chiffre faux
     var numberFalse = new Array();
     var nbNumberFalse = 0;
-
+    tabSudoku = new Array();
     //recuperation des valeur des cases dans un tableau à 2 dimension
     var nbElement = 0;
     for(var i = 0; i < NBTIME;i++)
@@ -451,6 +507,7 @@ var tabSudoku = new Array();
  */
 function resolution()
 {
+    var start = Date.now();
     //recuperation des chiffres dans le tableau
     var elements = document.getElementsByClassName("mui-col-md-1");
 
@@ -465,39 +522,39 @@ function resolution()
             nbElement++;
         }
     }
-    sudokuIsTrue = fillTrueCase(tabSudoku);
+    sudokuIsTrue = fillTrueCase();
     if(!sudokuIsTrue)
     {
-        alert("Le sudoku n'a pas de solution. Vérifier les valeurs que vous avez changez")
+        alert("Le sudoku n'a pas de solution")
     }else {
         var nbElementEmpty = 0;
+
         for (var i = 0; i < NBTIME; i++) {
+
             for (var j = 0; j < NBTIME; j++) {
                 if (tabSudoku[i][j] == "") {
                     nbElementEmpty++;
                 }
             }
         }
-
         if (nbElementEmpty > 0) {
-            sudokuIsTrue = fillCaseRec(0,0);
+            sudokuIsTrue = fillCaseRec(0, 0);
         }
-        if(!sudokuIsTrue)
-        {
+
+        if (!sudokuIsTrue) {
             alert("Le Sudoku n'a pas de solution. Vérifier les valeurs que vous avez changez")
-        }else
-        {
+        } else {
             addNumberToGamePlace(tabSudoku);
         }
     }
+    //alert(Date.now() - start + "ms");
 }
 
 /****
  * Trouve toutes les cases avec qu'une seul solution possible
- * @param sudokuToSolve
- * @returns {*}
+ * @returns {boolean}
  */
-function fillTrueCase(sudokuToSolve)
+function fillTrueCase()
 {
     //tableau de ligne
     var sudokuValueDefault = [1,2,3,4,5,6,7,8,9];
@@ -506,33 +563,33 @@ function fillTrueCase(sudokuToSolve)
     do {
         //copie du tableau de jeu pour faire une comparaison avant-apres
         lastSudokuToSolve = [];
-        lastSudokuToSolve += sudokuToSolve.slice(0);
+        lastSudokuToSolve += tabSudoku.slice(0);
+
         for (var i = 0; i < NBTIME; i++) {
             //chaque case
             for (var j = 0; j < NBTIME; j++) {
-                if (sudokuToSolve[i][j] == "") {
+                if (tabSudoku[i][j] == "") {
                     //vérification des chiffres possibles de la ligne
                     for (var k = 0; k < NBTIME; k++) {
-                        if (indexOfArray(sudokuValue,sudokuToSolve[i][k]) > -1) {
+                        if (indexOfArray(sudokuValue,tabSudoku[i][k]) > -1) {
                             //enlève la solution des solutions possibles
-                            sudokuValue.splice(indexOfArray(sudokuValue,sudokuToSolve[i][k]), 1);
+                            sudokuValue.splice(indexOfArray(sudokuValue,tabSudoku[i][k]), 1);
                         }
                     }
 
                     //vérification des chiffres de la colonne
                     for (var k = 0; k < NBTIME; k++) {
-                        if (indexOfArray(sudokuValue,sudokuToSolve[k][j]) > -1) {
+                        if (indexOfArray(sudokuValue,tabSudoku[k][j]) > -1) {
                             //enlève la solution des solutions possibles
-                            sudokuValue.splice(indexOfArray(sudokuValue,sudokuToSolve[k][j]), 1);
+                            sudokuValue.splice(indexOfArray(sudokuValue,tabSudoku[k][j]), 1);
                         }
                     }
 
                     //vérification des chiffres possibles de la section
                     for (var k = 0; k < 3; k++) {
                         for (var l = 0; l < 3; l++) {
-
-                            if (indexOfArray(sudokuValue,sudokuToSolve[Math.floor(i / 3) * 3 + k][Math.floor(j / 3) * 3 + l]) > -1) {
-                                sudokuValue.splice(indexOfArray(sudokuValue,sudokuToSolve[Math.floor(i / 3) * 3 + k][Math.floor(j / 3) * 3 + l]), 1);
+                            if (indexOfArray(sudokuValue,tabSudoku[Math.floor(i / 3) * 3 + k][Math.floor(j / 3) * 3 + l]) > -1) {
+                                sudokuValue.splice(indexOfArray(sudokuValue,tabSudoku[Math.floor(i / 3) * 3 + k][Math.floor(j / 3) * 3 + l]), 1);
                             }
                         }
                     }
@@ -540,10 +597,8 @@ function fillTrueCase(sudokuToSolve)
                     //ajoute la seul valeur possible si il y en a une
                     if(sudokuValue.length === 1)
                     {
-                        sudokuToSolve[i][j] = sudokuValue[0]+ "";
-
+                        tabSudoku[i][j] = sudokuValue[0] + "";
                     }
-                    //si aucune valeur possible le sudokue est faux
                     if(sudokuValue.length === 0)
                     {
                         return false;
@@ -552,8 +607,8 @@ function fillTrueCase(sudokuToSolve)
                 sudokuValue = sudokuValueDefault.slice(0);
             }
         }
-    }while (sudokuToSolve.toString() !== lastSudokuToSolve.toString());
-    return sudokuToSolve;
+    }while (tabSudoku.toString() !== lastSudokuToSolve.toString());
+    return true;
 }
 
 /**
@@ -579,13 +634,13 @@ function fillCaseRec(nbLine,nbCols)
     if(isFull) {
         return true;
     }
-
+    var valueSudoku = [1,2,3,4,5,6,7,8,9];
     //test toutes les possiblités
     for(var j = 1; j <= NBTIME;j++) {
 
         //si la case est vide
         if(tabSudoku[nbLine][nbCols] == "") {
-            tabSudoku[nbLine][nbCols] = j + "";
+            tabSudoku[nbLine][nbCols] = valueSudoku[Math.floor((Math.random() * valueSudoku.length))] + "";
             if (gridIsValid(tabSudoku,nbLine,nbCols)) {
                 //si la valeur est possible
                 if (nbCols == 8) {
@@ -606,9 +661,12 @@ function fillCaseRec(nbLine,nbCols)
                     }
                     else
                         nbCols--;
+                    valueSudoku.splice(indexOfArray(valueSudoku,tabSudoku[nbLine][nbCols]),1);
                     tabSudoku[nbLine][nbCols] = "";
+
                 }
             }else {
+                valueSudoku.splice(indexOfArray(valueSudoku,tabSudoku[nbLine][nbCols]),1);
                 tabSudoku[nbLine][nbCols] = "";
             }
         //si la case est déjà remplir
@@ -690,17 +748,29 @@ function gridIsValid(tabSudoku,nbLine,nbCols) {
     return true;
 }
 
+/**
+ * si on appuie sur une touche
+ * @param event
+ */
 function  pressKey(event)
 {
+    //lance le reset
     reset(event);
+    //lance le changement de chiffre si c'est un chiffre
     if(event.which >= 48 && event.which <= 57 || event.which >= 96 && event.which <= 105)
         changeNumber(lastCaseChange,event.which)
 }
 
+/**
+ * reset du tableau de jeu
+ * @param event
+ */
 function reset(event)
 {
+    //si la touche r est enfoncée
     if(event.which == 114 ||event.which == 82)
     {
+        //création d'un tableau de jeu vide
         sudokuReset = new Array();
         for(var i = 0;i < NBTIME;i++)
         {
@@ -710,6 +780,7 @@ function reset(event)
                 sudokuReset[i][j] = "";
             }
         }
+        //affichage du tableau vide
         resetColor(document.getElementsByClassName("mui-col-md-1"));
         addNumberToGamePlace(sudokuReset);
     }
