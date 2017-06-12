@@ -405,31 +405,31 @@ function verification(elements)
                             //ajout de l'autre chiffre au tableau de chiffre faux
                             switch (indexOfArray(sudokuValue, sudokuToCheck[j*3+k][i*3+l])) {
                                 case 0:
-                                    numberFalse[nbNumberFalse] = 3 * i + 1 + "" + (3 * j + 1);
+                                    numberFalse[nbNumberFalse] = j*3 + 1 + "" + (i*3 + 1);
                                     break;
                                 case 1:
-                                    numberFalse[nbNumberFalse] = 3 * i + 1 + "" + (3 * j + 2);
+                                    numberFalse[nbNumberFalse] = j*3+ 1 + "" + (i*3 + 2);
                                     break;
                                 case 2:
-                                    numberFalse[nbNumberFalse] = 3 * i + 1 +"" + (3 * j + 3);
+                                    numberFalse[nbNumberFalse] = j*3 + 1 +"" + (i*3 + 3);
                                     break;
                                 case 3:
-                                    numberFalse[nbNumberFalse] = 3 * i + 2 + "" + (3 * j + 1);
+                                    numberFalse[nbNumberFalse] = j*3 + 2 + "" + (i*3 + 1);
                                     break;
                                 case 4:
-                                    numberFalse[nbNumberFalse] = 3 * i + 2 + "" + (3 * j + 2);
+                                    numberFalse[nbNumberFalse] = j*3+ 2 + "" + (i*3 + 2);
                                     break;
                                 case 5:
-                                    numberFalse[nbNumberFalse] = 3 * i + 2 + "" + (3 * j + 3);
+                                    numberFalse[nbNumberFalse] = j*3 + 2 + "" + (i*3 + 3);
                                     break;
                                 case 6:
-                                    numberFalse[nbNumberFalse] = 3 * i + 3 + "" + (3 * j+ 1);
+                                    numberFalse[nbNumberFalse] = j*3 + 3 + "" + (i*3+ 1);
                                     break;
                                 case 7:
-                                    numberFalse[nbNumberFalse] = 3 * i + 3 + "" + (3 * j + 2);
+                                    numberFalse[nbNumberFalse] = j*3 + 3 + "" + (i*3 + 2);
                                     break;
                                 case 8:
-                                    numberFalse[nbNumberFalse] = 3 * i + 3 + "" + (3 * j + 3);
+                                    numberFalse[nbNumberFalse] = j*3 + 3 + "" + (i*3 + 3);
                                     break;
                                 default:
                                     break;
@@ -444,9 +444,11 @@ function verification(elements)
                     }
                 }
             }
+
             sudokuValue = new Array();
             nbTime = 0;
         }
+
     }
     resetColor(elements);
     //affiche les erreurs
