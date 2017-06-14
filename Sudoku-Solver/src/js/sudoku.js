@@ -6,7 +6,8 @@
 const NBTIME = 9;
 
 //nombre de cases à supprimer
-var difficultyMax = 31;
+var difficultyName = "Extrêmement Facile";
+var difficultyMax = 1;
 var difficultyMin = 0;
 
 var difficultyLowerBoundByRowsCols = 5;
@@ -14,13 +15,19 @@ var difficultyLowerBoundByRowsCols = 5;
 //dernière case modifée
 var lastCaseChange = "";
 
+var startTime = 0;
 
+var endTime = 0;
 /**
  * change la valeur d'une case et lance la vérification si la dernière case est changé
  * @param id id de la case
  */
 function changeNumber(id,number)
 {
+    if(startTime == 0)
+    {
+        startTime = Date.now();
+    }
     var elements = document.getElementsByClassName("mui-col-md-1");
     var element = document.getElementById(id);
     if (element.style.fontWeight != "900") {
@@ -111,6 +118,7 @@ function changeNumber(id,number)
  */
 function generateSudoku()
 {
+    startTime = 0;
     var start = Date.now();
     resetColor(document.getElementsByClassName("mui-col-md-1"));
     //tableau de jeu
@@ -284,8 +292,9 @@ function addNumberToGamePlace(sudokuArray)
  * @param numberMax nombre max de case à supprimer
  * @param numberMin nombre min de case à supprimer
  */
-function changeDifficulty(numberMax,numberMin,LowerBoundByRowsCols)
+function changeDifficulty(numberMax,numberMin,LowerBoundByRowsCols,Name)
 {
+    difficultyName = Name;
     difficultyMax = numberMax;
     difficultyMin = numberMin;
     difficultyLowerBoundByRowsCols = LowerBoundByRowsCols;
@@ -452,11 +461,30 @@ function verification(elements)
     }
     resetColor(elements);
     //affiche les erreurs
-    if(numberFalse.length > 0)
-        changeColor(numberFalse,"red");
-    else
+    if(numberFalse.length > 0) {
+        changeColor(numberFalse, "red");
+    }
+    else {
         //TODO une vrai win
-        alert("Vous avez gagné");
+        endTime = Date.now() - startTime;
+        saveScoreOverlay(endTime);
+    }
+}
+
+function saveScoreOverlay(endTime) {
+
+    // initialize modal element
+    var modalEl = document.createElement('div');
+    modalEl.style.width = '400px';
+    modalEl.style.height = '275px';
+    modalEl.style.margin = '100px auto';
+    modalEl.style.backgroundColor = '#fff';
+    modalEl.innerHTML= '<form action="../php/saveScore.php" class="mui-form">Vous avez gagné en ' + endTime +' ms en mode ' + difficultyName + '. Le score vas être enregisté si vous appuier sur OK<br><input id="score" name="score" type="text" style="display: none" value="'+endTime+'"><input id="difficulty" name="difficulty" type="text" style="display: none" value="'+difficultyName+'"><button type="submit" class="mui-btn mui-btn--raised">Ok</button> </form>';
+
+    // show modal
+    mui.overlay('on', modalEl);
+
+
 }
 
 /**
@@ -509,7 +537,7 @@ var tabSudoku = new Array();
  */
 function resolution()
 {
-    var start = Date.now();
+    //var start = Date.now();
     //recuperation des chiffres dans le tableau
     var elements = document.getElementsByClassName("mui-col-md-1");
 

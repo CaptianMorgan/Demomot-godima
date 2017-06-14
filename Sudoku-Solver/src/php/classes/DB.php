@@ -75,11 +75,11 @@ class DB
      * @param $scoValue format: "00:00:00"
      * @param $idUser
      */
-    public function insertScore($scoValue,$idUser)
+    public function insertScore($scoValue,$scoDifficulty,$idUser)
     {
         $sqlQuerry = "Insert into t_score";
-        $sqlQuerry .= "(`scoValue`,`idUser`)Values";
-        $sqlQuerry .= "(".$scoValue.",".$idUser.")";
+        $sqlQuerry .= "(`scoValue`,`scoDifficulty`,`idUser`)Values";
+        $sqlQuerry .= "(".$scoValue.",".$scoDifficulty.",".$idUser.")";
 
         $this->doQuerry($sqlQuerry);
     }
@@ -122,10 +122,14 @@ class DB
         return $this->doQuerryReturn($sqlQuerry);
     }
 
-
+    /***
+     * @return mixed
+     */
     public  function  getUser()
     {
+        $sqlQuerry = "Select * From t_user";
 
+        return $this->doQuerryReturn($sqlQuerry);
 
     }
 }

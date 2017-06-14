@@ -11,7 +11,7 @@ $NBTIME = 9;
     <h2>Sudoku</h2>
     <p>Le Sudoku est un jeu de réflexion créé en 1979 par un Américain. Ce jeu est une grille qu'il faut remplir de chiffre manquant (de 1 à 9) de façon à ce que ceux-ci ne se répètent pas au sein d'un carré de 9 cases ou d'une ligne verticale et horizontale.</p>
     <div id="gamePlace">
-
+    <div id="time"></div>
     <!--Génération du tableau de jeu-->
     <?php for($i = 1;$i < $NBTIME+1;$i++) {
         if($i % 3 == 1)
@@ -50,11 +50,11 @@ $NBTIME = 9;
         </button>
 
         <ul class="mui-dropdown__menu">
-            <li><a onclick="changeDifficulty(31,0,5)">Extrêmement Facile</a></li>
-            <li><a onclick="changeDifficulty(45,32,4)">Facile</a></li>
-            <li><a onclick="changeDifficulty(49,46,3)">Moyen</a></li>
-            <li><a onclick="changeDifficulty(53,50,2)">Difficile</a></li>
-            <li><a onclick="changeDifficulty(59,54,0)">Diabolique</a></li>
+            <li><a onclick="changeDifficulty(31,0,5,'Extrêmement Facile')">Extrêmement Facile</a></li>
+            <li><a onclick="changeDifficulty(45,32,4,'Facile')">Facile</a></li>
+            <li><a onclick="changeDifficulty(49,46,3,'Moyen')">Moyen</a></li>
+            <li><a onclick="changeDifficulty(53,50,2,'Difficile')">Difficile</a></li>
+            <li><a onclick="changeDifficulty(59,54,0,'Diabolique')">Diabolique</a></li>
         </ul>
     </div>
     <button class="mui-btn" onclick="resolution()">Résoudre</button>

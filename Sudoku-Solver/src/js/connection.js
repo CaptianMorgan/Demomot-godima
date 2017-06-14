@@ -9,7 +9,7 @@ function loginOverlay() {
     modalEl.style.height = '275px';
     modalEl.style.margin = '100px auto';
     modalEl.style.backgroundColor = '#fff';
-    modalEl.innerHTML= '<form action="../php/login.php" class="mui-form"><legend>Connexion</legend><div class="mui-textfield"><input type="text" placeholder="Pseudo" id="usePseudo" name="usePseudo"></div><div class="mui-textfield"><input type="password" id="usePassword" name="usePassword" placeholder="Mot de passe"></div><button type="submit" class="mui-btn mui-btn--raised">Submit</button> <a onclick="signinOverlay()">Inscription</a></form>';
+    modalEl.innerHTML= '<form action="../php/login.php" method="post" class="mui-form"><legend>Connexion</legend><div class="mui-textfield"><input type="text" placeholder="Pseudo" id="usePseudo" name="usePseudo"></div><div class="mui-textfield"><input type="password" id="usePassword" name="usePassword" placeholder="Mot de passe"></div><button type="submit" class="mui-btn mui-btn--raised">Submit</button> <a onclick="signinOverlay()">Inscription</a></form>';
 
     // show modal
     mui.overlay('on', modalEl);

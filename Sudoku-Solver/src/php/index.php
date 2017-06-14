@@ -8,7 +8,7 @@
 session_start();
 ?>
 <!doctype html>
-<html lang="fr" onkeydown="pressKey(event)">
+<html lang="fr" onkeydown="pressKey(event)" >
 <head>
     <title>Sudoku Solver</title>
     <link href="../../resources/css/default.css" rel="Stylesheet" type="text/css">
@@ -47,7 +47,7 @@ session_start();
                     <?php if(!isset($_SESSION['pseudo'])){?>
                         <a id="login" onclick="loginOverlay()">connexion <i class="fa fa-sign-in"></i>
                     <?php }else{?>
-                        <a id="login" href="deconnection.php">déconnexion <i class="fa fa-sign-in"></i>
+                        <a id="login" href="deconnection.php">déconnexion <i class="fa fa-power-off"></i>
                     <?php }?>
                     </a></td>
             </tr>
