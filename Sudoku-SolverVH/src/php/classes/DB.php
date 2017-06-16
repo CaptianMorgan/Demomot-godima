@@ -8,10 +8,10 @@
  */
 class DB
 {
-    private $user = "dbLoginUser";
-    private $password= ".Etml-";
+    private $user = "u701099821_user";
+    private $password= "matthieu12";
     private $host = "localhost";
-    private $dbName = "db_sudoku";
+    private $dbName = "u701099821_sudok";
     private $db;
     /***************************************
      * conection à la BD     *
