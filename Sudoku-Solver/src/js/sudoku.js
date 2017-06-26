@@ -483,6 +483,10 @@ function verificationTab(elements)
     return numberFalse;
 }
 
+/***
+ * popup sauvegarde de score
+ * @param endTime
+ */
 function saveScoreOverlay(endTime) {
 
     // initialize modal element
@@ -596,6 +600,11 @@ function resolution()
     //alert(Date.now() - start + "ms");
 }
 
+/**
+ * Vérification si le sudoku à resoudre n'est pas faux
+ * @param elements
+ * @returns {boolean}
+ */
 function verificationSudokuBeforeSolv(elements)
 {
     var numberFalse = verificationTab(elements);
